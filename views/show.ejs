@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script> 
+</head>
+<body class="bg-zinc-800 text-white">
+  <div class="w-full h-screen p-10">
+
+    <a href="/" class="font-semibold">Go Back to Home</a>
+
+    <h2 class="text-3xl text-blue-300 font-semibold mt-10"><%= fileName%></h2>
+
+    <p class="mt-5"><%= data%></p>
+
+    <form
+            action="/delete/<%= fileName %>"
+            method="post"
+            class="text-red-400 font-bold mt-5"
+          >
+            <input type="hidden" name="fileName" value="<%= fileName %>" />
+            <button
+              type="submit"
+              class="bg-red-500 text-white font-semibold rounded-md p-1"
+            >
+              Delete Task
+            </button>
+          </form>
+    
+  
+  </div>
+</body>
+</html>

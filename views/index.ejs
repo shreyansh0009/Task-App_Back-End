@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-zinc-800 text-white">
+    <div class="w-full h-screen flex flex-col items-center space-y-6">
+      <h1 class="text-6xl mt-8">Task App</h1>
+      <div class="w-full max-w-md">
+        <form action="/create" method="post" class="flex flex-col space-y-4">
+          <h2 class="text-xl">Task Title</h2>
+          <input
+            type="text"
+            name="taskTitle"
+            id="taskTitle"
+            placeholder="Task Title"
+            class="p-2 rounded text-black"
+          />
+          <h2 class="text-xl">Task Description</h2>
+          <textarea
+            type="textarea"
+            name="taskDesc"
+            id="taskDesc"
+            placeholder="Task Description"
+            class="p-2 rounded text-black h-32 resize-none"
+          ></textarea>
+          <button class="bg-blue-600 h-12 rounded-md font-bold text-lg">
+            Create Task
+          </button>
+        </form>
+      </div>
+
+      <div class="tasks flex flex-wrap gap-4 py-10">
+        <% if (files.length > 0) { %>
+          <% files.forEach(function(val) { %>
+            <div class="w-56 min-h-46 py-3 bg-zinc-500 rounded-md p-2 flex flex-col justify-between ">
+              <h1 class="text-xl font-bold break-words"><%= val %></h1>
+      
+              <div class="flex flex-col gap-2 mt-3">
+                <a href="/files/<%= val %>" class="bg-blue-600 w-full rounded-md p-2 font-semibold text-center text-white">
+                  Read More
+                </a>
+      
+                <form action="/delete/<%= val %>" method="post" onsubmit="return confirm('Are you sure you want to delete this task?');">
+                  <button type="submit" class="bg-red-600 w-full rounded-md p-2 font-semibold text-center text-white">
+                    Delete
+                  </button>
+                </form>
+              </div>
+            </div>
+        <% }) %> <% } else { %>
+        <h1 class="text-gray-400 font-bold text-lg">No Tasks Yet!</h1>
+        <% } %>
+      </div>
+    </div>
+
+    <script src="javascripts/script.js"></script>
+  </body>
+</html>
