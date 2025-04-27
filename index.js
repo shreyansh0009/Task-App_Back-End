@@ -53,7 +53,28 @@ app.post("/delete/:fileName", function (req, res) {
     } else {
       console.log(`Deleted file: ${req.params.fileName}`);
     }
-    res.redirect("/"); // after deleting, go back to home
+    res.redirect("/");
+  });
+});
+
+app.get("/edit/:fileName", function (req, res) {
+  res.render("edit", {
+    fileName: req.params.fileName,
+  });
+});
+
+app.post("/edit/:fileName", function (req, res) {
+  const oldFilePath = `./files/${req.params.fileName}`;
+  const newFileName = req.body.editTitle.trim().split(" ").join("")+ ".txt"; 
+  const newFilePath = `./files/${newFileName}`;
+
+  fs.rename(oldFilePath, newFilePath, function (err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error renaming file.");
+    }
+    console.log("File renamed successfully");
+    res.redirect("/");
   });
 });
 

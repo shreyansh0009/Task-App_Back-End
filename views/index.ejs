@@ -43,10 +43,16 @@
                 <a href="/files/<%= val %>" class="bg-blue-600 w-full rounded-md p-2 font-semibold text-center text-white">
                   Read More
                 </a>
+
+                <form action="/edit/<%= val %>" method="get">
+                  <button type="submit" class="bg-yellow-500 w-full rounded-md p-2 font-semibold text-center text-white">
+                    Edit Task
+                  </button>
+                </form>
       
                 <form action="/delete/<%= val %>" method="post" onsubmit="return confirm('Are you sure you want to delete this task?');">
                   <button type="submit" class="bg-red-600 w-full rounded-md p-2 font-semibold text-center text-white">
-                    Delete
+                    Delete Task
                   </button>
                 </form>
               </div>
